@@ -17,13 +17,12 @@ vector matching. Features:
 """
 from __future__ import annotations
 
-import re
 from dataclasses import dataclass, field
 from enum import Enum
 from typing import Any
 
 from app.rag.retriever import RetrievedContext, Retriever
-from app.rag.vectorstore import DocumentChunk, ScoredChunk
+from app.rag.vectorstore import ScoredChunk
 
 
 class FinancialIntent(str, Enum):

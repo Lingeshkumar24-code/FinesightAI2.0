@@ -1,6 +1,13 @@
+import httpx
+import respx
+
 from app.engines.market_indicators import ema, macd, rsi, sma
 from app.engines.market_prediction import StockPredictionEngine
-from app.services.market_data import DemoMarketDataProvider
+from app.services.market_data import (
+    DemoMarketDataProvider,
+    MarketDataService,
+    YahooChartProvider,
+)
 
 
 def test_sma_ema_rsi_known_values() -> None:
@@ -43,18 +50,6 @@ def test_prediction_rejects_short_history_and_bad_horizon() -> None:
         assert "horizon_days" in str(error)
     else:
         raise AssertionError("unsupported horizon should be rejected")
-
-
-import httpx
-import respx
-
-from app.services.market_data import (
-    DemoMarketDataProvider,
-    MarketDataService,
-    YahooChartProvider,
-)
-
-
 @respx.mock
 def test_yahoo_chart_provider_parses_daily_bars():
     payload = {
@@ -112,4 +107,3 @@ def test_market_data_service_falls_through_to_demo_when_live_providers_fail():
     assert len(bars) == 60
     assert source == "demo"
     assert status == "DEMO"
-
