@@ -1,0 +1,903 @@
+/* ============================================================
+   FinSight AI — Executive Business Financial Intelligence Design System
+   Aesthetic: Prestigious Editorial Finance & Warm Executive Cream
+   Palette: Warm Cream Paper, Crisp White Surfaces, Jet Black & White Action Buttons
+   ============================================================ */
+
+:root {
+  /* ---- Editorial Cream Paper Surfaces ---- */
+  --paper: #F7F5EF;           /* Luxurious warm ivory background */
+  --paper-warm: #F1EEE4;      /* Deeper warm linen tone */
+  --surface: #FFFFFF;         /* Crisp pure white for cards and modules */
+  --surface-raised: #FCFBF7;  /* Subtle raised cream-white */
+  --surface-subtle: #F4F1E8;  /* Light warm cream for table headers/inputs */
+
+  /* ---- Borders ---- */
+  --border: #E7E5DC;          /* Elegant warm stone border */
+  --border-strong: #CFCAB9;   /* High-contrast border for active/hover */
+  --border-subtle: #EFEEE7;   /* Very soft divider */
+
+  /* ---- Executive Typography / Ink ---- */
+  --ink: #242923;             /* Deep charcoal — primary headings & figures */
+  --ink-soft: #4B554D;        /* Refined sage charcoal — secondary copy */
+  --ink-muted: #788579;       /* Muted sage — labels, timestamps, benchmarks */
+  --ink-faint: #A1AAA2;
+
+  /* ---- Monochrome High-Contrast Buttons (Black & White) ---- */
+  --btn-primary-bg: #123B2A;
+  --btn-primary-text: #FFFFFF;
+  --btn-primary-hover: #16845B;
+  --btn-secondary-bg: #FFFFFF;
+  --btn-secondary-border: #123B2A;
+  --btn-secondary-text: #123B2A;
+  --btn-secondary-hover-bg: #123B2A;
+  --btn-secondary-hover-text: #FFFFFF;
+
+  /* ---- Financial Status & Accents (Preserved for data fidelity) ---- */
+  --accent: #16845B;          /* Rich emerald brand anchor */
+  --brand: #123B2A;
+  --positive: #16845B;        /* Emerald for positive financial yield */
+  --positive-soft: #ECFDF5;
+  --positive-border: #A7F3D0;
+  
+  --watch: #B45309;           /* Amber bronze for watch items */
+  --watch-soft: #FEF3C7;
+  --watch-border: #FDE68A;
+
+  --risk: #B91C1C;            /* Crimson for negative/breach */
+  --risk-soft: #FEE2E2;
+  --risk-border: #FECACA;
+
+  /* Backward compat aliases for engine charts */
+  --accent-soft: #ECFDF5;
+  --accent-border: #A7F3D0;
+  --gold: #D6B477;
+
+  /* ---- Sidebar Theme (Refined Executive Linen) ---- */
+  --sidebar-bg: #F4F1E8;
+  --sidebar-border: #E7E5DC;
+  --sidebar-text: #242923;
+  --sidebar-link: #788579;
+  --sidebar-link-active: #123B2A;
+  --sidebar-link-active-bg: #FFFFFF;
+  --sidebar-hover-bg: rgba(0, 0, 0, 0.04);
+
+  /* ---- Typography & Sizing ---- */
+  --font-sans: "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-data: var(--font-mono);
+
+  --radius-sharp: 4px;
+  --radius-soft: 8px;
+  --radius-card: 10px;
+  --radius-pill: 999px;
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+
+  /* ---- Elevated Shadows ---- */
+  --shadow-subtle: 0 1px 3px rgba(27, 23, 16, 0.04), 0 2px 6px rgba(27, 23, 16, 0.02);
+  --shadow-card: 0 1px 3px rgba(27, 23, 16, 0.05), 0 4px 14px rgba(27, 23, 16, 0.03);
+  --shadow-hover: 0 4px 16px rgba(27, 23, 16, 0.08), 0 8px 24px rgba(27, 23, 16, 0.04);
+
+  color-scheme: light;
+}
+
+/* Base Resets */
+* {
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background-color: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: 14.5px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+h1, h2, h3, h4 {
+  font-weight: 600;
+  margin: 0;
+  color: var(--ink);
+  letter-spacing: -0.025em;
+}
+
+h1 { font-size: 24px; font-weight: 700; }
+h2 { font-size: 18px; font-weight: 600; }
+h3 { font-size: 16px; font-weight: 600; }
+
+.num {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" on;
+}
+
+a {
+  color: var(--ink);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+a:hover {
+  color: #000;
+}
+
+/* ============================================================
+   Buttons (Black & White Business Theme with Edge White Lighting)
+   ============================================================ */
+.btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  border-radius: var(--radius-soft);
+  padding: 9px 20px;
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 13.5px;
+  letter-spacing: 0.015em;
+  line-height: 1.25;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  user-select: none;
+  white-space: nowrap;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+/* Side-edges white lighting illumination beams */
+.btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 3px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.1) 0%, #FFFFFF 30%, #FFFFFF 70%, rgba(255, 255, 255, 0.1) 100%);
+  opacity: 0;
+  box-shadow: 0 0 12px 3px #FFFFFF, 2px 0 6px rgba(255, 255, 255, 0.9);
+  transition: opacity 0.25s ease, transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: scaleY(0.3);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.btn::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 3px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.1) 0%, #FFFFFF 30%, #FFFFFF 70%, rgba(255, 255, 255, 0.1) 100%);
+  opacity: 0;
+  box-shadow: 0 0 12px 3px #FFFFFF, -2px 0 6px rgba(255, 255, 255, 0.9);
+  transition: opacity 0.25s ease, transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: scaleY(0.3);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.btn:hover:not(:disabled)::before,
+.btn:hover:not(:disabled)::after {
+  opacity: 1;
+  transform: scaleY(1);
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+.btn:focus-visible {
+  outline: 2px solid #000;
+  outline-offset: 2px;
+}
+
+/* Primary Button: Solid Jet Black with Side-Edge White Light Beams */
+.btn-primary {
+  background-color: var(--btn-primary-bg) !important;
+  color: var(--btn-primary-text) !important;
+  border-color: var(--btn-primary-bg) !important;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15), 0 2px 4px rgba(0, 0, 0, 0.08);
+}
+
+.btn-primary:hover:not(:disabled) {
+  background-color: #171717 !important;
+  border-color: rgba(255, 255, 255, 0.35) !important;
+  border-left-color: #FFFFFF !important;
+  border-right-color: #FFFFFF !important;
+  color: #FFFFFF !important;
+  /* Radiating white lighting from left & right side edges */
+  box-shadow:
+    -6px 0 16px 1px rgba(255, 255, 255, 0.85),
+    6px 0 16px 1px rgba(255, 255, 255, 0.85),
+    0 0 10px 1px rgba(255, 255, 255, 0.4),
+    0 4px 16px rgba(0, 0, 0, 0.25);
+}
+
+/* Secondary Button: Crisp White with Black Border, Inverting to Black with Side Edge Lights on Hover */
+.btn-secondary {
+  background-color: var(--btn-secondary-bg) !important;
+  color: var(--btn-secondary-text) !important;
+  border: 1px solid var(--btn-secondary-border) !important;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.btn-secondary:hover:not(:disabled) {
+  background-color: #0A0A0A !important;
+  color: #FFFFFF !important;
+  border-color: #0A0A0A !important;
+  border-left-color: #FFFFFF !important;
+  border-right-color: #FFFFFF !important;
+  box-shadow:
+    -6px 0 16px 1px rgba(255, 255, 255, 0.85),
+    6px 0 16px 1px rgba(255, 255, 255, 0.85),
+    0 0 8px 1px rgba(255, 255, 255, 0.35),
+    0 4px 14px rgba(0, 0, 0, 0.2);
+}
+
+.btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none !important;
+}
+
+/* ---- Danger / Destructive Button ---- */
+.btn-danger {
+  background: #FEE2E2;
+  color: #B91C1C;
+  border-color: #FECACA;
+}
+.btn-danger:hover:not(:disabled) {
+  background: #B91C1C;
+  color: #FFFFFF;
+  border-color: #B91C1C;
+  box-shadow: 0 4px 14px rgba(185, 28, 28, 0.25);
+}
+
+/* ---- Size Variants ---- */
+.btn-sm { padding: 6px 14px; font-size: 12.5px; }
+.btn-lg { padding: 12px 28px; font-size: 14.5px; }
+.btn-icon { padding: 8px; border-radius: 6px; }
+
+/* ============================================================
+   Inputs & Forms
+   ============================================================ */
+input, textarea, select {
+  font-family: inherit;
+  font-size: 14px;
+  padding: 9px 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-soft);
+  background: var(--surface);
+  color: var(--ink);
+  width: 100%;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+input:focus, textarea:focus, select:focus {
+  outline: none;
+  border-color: #0A0A0A;
+  box-shadow: 0 0 0 3px rgba(10, 10, 10, 0.08);
+}
+
+input::placeholder, textarea::placeholder {
+  color: var(--ink-faint);
+}
+
+label {
+  font-size: 12.5px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--ink-soft);
+  display: block;
+  margin-bottom: 6px;
+}
+
+/* ============================================================
+   App Shell & Layout
+   ============================================================ */
+.app-shell {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  min-height: 100vh;
+  background-color: var(--paper);
+}
+
+.sidebar {
+  background: var(--sidebar-bg);
+  border-right: 1px solid var(--sidebar-border);
+  color: var(--sidebar-text);
+  padding: var(--space-5) var(--space-3);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+}
+
+.sidebar .brand {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-2) var(--space-2);
+  color: var(--sidebar-text);
+}
+
+.sidebar .brand-badge {
+  background: #0A0A0A;
+  color: #FFFFFF;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 6px 9px;
+  border-radius: 6px;
+  letter-spacing: 0.05em;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.sidebar .brand-title {
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: #0A0A0A;
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.sidebar .brand-sub {
+  font-size: 10.5px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ink-muted);
+}
+
+.sidebar nav {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.sidebar nav a {
+  color: var(--sidebar-link);
+  text-decoration: none;
+  padding: 9px 14px;
+  border-radius: var(--radius-soft);
+  font-size: 13.5px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: all 0.15s ease;
+  border: 1px solid transparent;
+}
+
+.sidebar nav a:hover {
+  background: rgba(0, 0, 0, 0.04);
+  color: #0A0A0A;
+}
+
+.sidebar nav a.active {
+  background: #FFFFFF;
+  color: #0A0A0A;
+  font-weight: 600;
+  border: 1px solid var(--border);
+  box-shadow: 0 1px 3px rgba(27, 23, 16, 0.05);
+}
+
+.sidebar-footer {
+  margin-top: auto;
+  padding: var(--space-3) var(--space-2);
+  border-top: 1px solid var(--sidebar-border);
+  font-size: 11.5px;
+  color: var(--ink-muted);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.sidebar-status-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #047857;
+  display: inline-block;
+}
+
+/* ============================================================
+   Topbar
+   ============================================================ */
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  padding: 14px var(--space-6);
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  box-shadow: 0 1px 2px rgba(27, 23, 16, 0.02);
+}
+
+.topbar .topbar-title {
+  font-size: 13.5px;
+  color: var(--ink-soft);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.topbar .tenant-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--paper);
+  border: 1px solid var(--border);
+  padding: 3px 10px;
+  border-radius: var(--radius-pill);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.topbar .topbar-aligned {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.content {
+  padding: var(--space-6);
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+/* ============================================================
+   Card Component
+   ============================================================ */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-card);
+  padding: var(--space-5);
+  box-shadow: var(--shadow-card);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.card:hover {
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-hover);
+}
+
+/* ============================================================
+   Dashboard Structure & KPI Elements
+   ============================================================ */
+.page-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-5);
+  flex-wrap: wrap;
+  margin-bottom: var(--space-5);
+}
+
+.page-header h1 {
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: var(--ink);
+}
+
+.page-lead {
+  color: var(--ink-soft);
+  font-size: 14px;
+  margin-top: 4px;
+  margin-bottom: 0;
+}
+
+.health-strip {
+  display: flex;
+  align-items: center;
+  gap: var(--space-5);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-soft);
+  padding: 10px 16px;
+  box-shadow: var(--shadow-subtle);
+}
+
+.health-metric {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.health-label {
+  font-size: 11.5px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--ink-muted);
+}
+
+.health-value {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--ink);
+  font-family: var(--font-mono);
+}
+
+.health-delta {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: var(--radius-sharp);
+  background: #ECFDF5;
+  color: #047857;
+  border: 1px solid #A7F3D0;
+}
+
+.health-delta.is-down {
+  background: #FEE2E2;
+  color: #B91C1C;
+  border: 1px solid #FECACA;
+}
+
+.health-run {
+  font-size: 12px;
+  color: var(--ink-muted);
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Section Header */
+.section-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-4);
+  margin-bottom: var(--space-4);
+  border-bottom: 1px solid var(--border-subtle);
+  padding-bottom: 10px;
+}
+
+.section-header h2 {
+  font-size: 18px;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+
+.section-header .section-run {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--ink-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+/* Insight Banner */
+.insight-banner {
+  border-radius: var(--radius-soft);
+  padding: 14px 18px;
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  box-shadow: var(--shadow-subtle);
+  margin-bottom: var(--space-4);
+}
+
+.insight-banner .inshead {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: 13.5px;
+  font-weight: 600;
+}
+
+.insight-banner .inshead.is-good {
+  color: #047857;
+}
+
+.insight-banner .inshead.is-watch {
+  color: #B45309;
+}
+
+.insight-banner .inshead.is-bad {
+  color: #B91C1C;
+}
+
+/* KPI Grid */
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: var(--space-4);
+}
+
+.metric {
+  border-radius: var(--radius-soft);
+  border: 1px solid var(--border);
+  padding: var(--space-4);
+  background: var(--surface);
+  transition: all 0.15s ease;
+  position: relative;
+}
+
+.metric:hover {
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-subtle);
+}
+
+.metric-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.metric-label {
+  font-size: 11.5px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--ink-muted);
+  width: 100%;
+}
+
+.metric-value {
+  font-family: var(--font-data);
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: var(--ink);
+  margin-top: 4px;
+}
+
+.metric-value .unit {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--ink-muted);
+  margin-left: 2px;
+}
+
+.delta {
+  font-size: 10.5px;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: var(--radius-sharp);
+  background: #ECFDF5;
+  color: #047857;
+  border: 1px solid #A7F3D0;
+}
+
+.delta.is-down {
+  background: #FEE2E2;
+  color: #B91C1C;
+  border: 1px solid #FECACA;
+}
+
+.metric-chart {
+  margin-top: 10px;
+}
+
+.line-chart {
+  display: block;
+  width: 100%;
+  height: 42px;
+}
+
+.metric-note {
+  font-size: 11.5px;
+  color: var(--ink-muted);
+  margin-top: 8px;
+  line-height: 1.4;
+  border-top: 1px dashed var(--border-subtle);
+  padding-top: 6px;
+}
+
+/* Status Pills */
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 2px 8px;
+  border-radius: var(--radius-pill);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+}
+
+.pill.is-good {
+  background: #ECFDF5;
+  color: #047857;
+  border: 1px solid #A7F3D0;
+}
+
+.pill.is-watch {
+  background: #FEF3C7;
+  color: #B45309;
+  border: 1px solid #FDE68A;
+}
+
+.pill.is-bad {
+  background: #FEE2E2;
+  color: #B91C1C;
+  border: 1px solid #FECACA;
+}
+
+/* ============================================================
+   Data Tables
+   ============================================================ */
+.data-table table, table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13.5px;
+}
+
+.data-table th, .data-table td, th, td {
+  text-align: left;
+  padding: 11px 14px;
+  border-bottom: 1px solid var(--border);
+}
+
+.data-table thead th, thead th {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ink-muted);
+  background: var(--surface-subtle);
+  border-top: 1px solid var(--border);
+}
+
+.data-table tbody tr:hover, tbody tr:hover {
+  background: var(--surface-raised);
+}
+
+.data-table td.num, .data-table th.num, td.num, th.num {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  font-family: var(--font-mono);
+}
+
+/* Cash Flow Trend Card */
+.chart-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.chart-trend {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  background: var(--surface-raised);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-soft);
+  padding: 12px 18px;
+}
+
+.chart-trend .num {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.chart-trend span {
+  color: var(--ink-muted);
+  font-size: 13px;
+}
+
+/* ============================================================
+   AI Advisor Chat
+   ============================================================ */
+.chat-log {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin-bottom: var(--space-4);
+  padding: var(--space-3);
+  background: var(--surface-raised);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-soft);
+  min-height: 380px;
+}
+
+.chat-bubble {
+  max-width: 80%;
+  padding: 12px 16px;
+  border-radius: var(--radius-soft);
+  font-size: 14px;
+  line-height: 1.55;
+  white-space: pre-wrap;
+  box-shadow: var(--shadow-subtle);
+}
+
+/* User Bubble: High Contrast Black with Crisp White Font */
+.chat-bubble.user {
+  align-self: flex-end;
+  background: #0A0A0A;
+  color: #FFFFFF;
+  border: 1px solid #0A0A0A;
+}
+
+/* Assistant Bubble: Clean Crisp White Surface with Slate Ink */
+.chat-bubble.assistant {
+  align-self: flex-start;
+  background: #FFFFFF;
+  color: var(--ink);
+  border: 1px solid var(--border);
+}
+
+.chat-form {
+  display: flex;
+  gap: var(--space-2);
+}
+
+.chat-form input {
+  flex: 1;
+}
+
+/* Error Text */
+.error-text {
+  color: var(--risk);
+  font-size: 13px;
+  font-weight: 500;
+  margin-top: 6px;
+}
+
+/* Utilities */
+.mt-0 { margin-top: 0; }
+.mt-2 { margin-top: 8px; }
+.mt-3 { margin-top: 12px; }
+.mt-4 { margin-top: 20px; }
+.mt-5 { margin-top: 28px; }
+.mb-0 { margin-bottom: 0; }
+.mb-3 { margin-bottom: 12px; }
+.mb-4 { margin-bottom: 16px; }
+
+.gap-1 { gap: var(--space-1); }
+.gap-2 { gap: var(--space-2); }
+.gap-3 { gap: var(--space-3); }
+.gap-4 { gap: var(--space-4); }
+.gap-5 { gap: var(--space-5); }
+
+.flex { display: flex; }
+.flex-col { display: flex; flex-direction: column; }
+.flex-wrap { flex-wrap: wrap; }
+.items-center { align-items: center; }
+.justify-between { justify-content: space-between; }
+.w-full { width: 100%; }
+.text-center { text-align: center; }

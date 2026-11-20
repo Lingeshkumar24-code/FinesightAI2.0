@@ -1,0 +1,28 @@
+# Python
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+htmlcov/
+.coverage
+*.db
+
+# Node
+node_modules/
+dist/
+coverage/
+
+# Env
+.env
+.env.local
+env
+env*
+backend/.env
+frontend/.env
+
+# OS
+.DS_Store
+
+# Temporary / Agent workspaces
+.manus/
